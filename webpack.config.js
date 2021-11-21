@@ -18,6 +18,8 @@ module.exports = {
   output: {
     filename: "hana.js",
     path: require("path").resolve(__dirname, "dist"),
+    library: "Hana",
+    libraryTarget: "umd",
   },
   optimization: {
     minimize: true,
