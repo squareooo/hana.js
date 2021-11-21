@@ -1,15 +1,20 @@
 {
   "name": "hana.js",
   "version": "0.0.1",
-  "main": "dist/node/cjs/index.js",
+  "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "build:web": "webpack",
     "test": "tsc && node test/index.mjs"
   },
   "repository": "https://github.com/momenthana/hana.js.git",
   "author": "Hana <momenthana@kakao.com>",
   "devDependencies": {
-    "typescript": "^4.5.2"
+    "terser-webpack-plugin": "^5.2.5",
+    "ts-loader": "^9.2.6",
+    "typescript": "^4.5.2",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1"
   }
 }

@@ -1,3 +1,3 @@
 import Hana from "../dist/index.js"
 
-Hana.Auth.authorize()
+Hana.Auth.authorize({ redirectUri: "" })
