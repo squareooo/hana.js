@@ -5,9 +5,8 @@
   "browser": "dist/hana.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
-    "build:web": "webpack",
-    "test": "tsc && node test/index.mjs"
+    "build": "tsc && webpack",
+    "test": "yarn build && node test/index.mjs"
   },
   "repository": "https://github.com/momenthana/hana.js.git",
   "author": "Hana <momenthana@kakao.com>",
