@@ -16,10 +16,11 @@ module.exports = {
     extensions: [".tsx", ".ts", ".js"],
   },
   output: {
-    filename: "hana.js",
     path: require("path").resolve(__dirname, "dist"),
+    filename: "hana.js",
     library: "Hana",
     libraryTarget: "umd",
+    globalObject: "this",
   },
   optimization: {
     minimize: true,

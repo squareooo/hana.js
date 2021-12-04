@@ -2,7 +2,7 @@ import axios from "axios"
 
 import store from "../store"
 
-interface AuthorizeInput {
+type AuthorizeInput = {
   redirectUri: string
 }
 
@@ -15,7 +15,7 @@ const authorize = (input: AuthorizeInput) => {
   location.href = uri
 }
 
-interface TokenInput {
+type TokenInput = {
   grantType: string
   redirectUri: string
   code: string

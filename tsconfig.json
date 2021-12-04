@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "CommonJS",
+    "module": "commonjs",
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "declaration": true,
     "sourceMap": true,
-    "removeComments": true,
     "baseUrl": ".",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "paths": {
+      "@": ["."]
+    }
   }
 }
