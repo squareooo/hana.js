@@ -1,12 +1,13 @@
 {
   "name": "hana.js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "dist/index.js",
   "browser": "dist/hana.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc && webpack",
-    "test": "yarn build && node test/index.mjs"
+    "test": "yarn build && node test/index.mjs",
+    "pub": "yarn build && npm publish"
   },
   "repository": "https://github.com/momenthana/hana.js.git",
   "author": "Hana <momenthana@kakao.com>",
