@@ -1,6 +1,6 @@
 {
   "name": "hana.js",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.js",
   "browser": "dist/hana.js",
   "types": "dist/index.d.ts",

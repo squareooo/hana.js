@@ -7,10 +7,15 @@ type AuthorizeInput = {
 }
 
 const authorize = (input: AuthorizeInput) => {
-  const query = Object.entries(input).map((e) => e.join("="))
+  const query = Object.entries({
+    client_id: store.state?.clientId,
+    redirect_uri: input?.redirectUri,
+  })
+    .map((e) => (e[1] ? e.join("=") : null))
+    .filter(Boolean)
 
   let uri = `https://auth.hana.ooo/oauth/authorize`
-  if (query[0]) uri += `?${query.join("&")}`
+  if (query) uri += `?${query.join("&")}`
 
   location.href = uri
 }
@@ -38,8 +43,12 @@ const getAccessToken = () => {
   return store.state.accessToken
 }
 
+const getClientId = () => {
+  return store.state.clientId
+}
+
 const setAccessToken = (accessToken: string) => {
   store.state.accessToken = accessToken
 }
 
-export default { authorize, token, getAccessToken, setAccessToken }
+export default { authorize, token, getAccessToken, getClientId, setAccessToken }

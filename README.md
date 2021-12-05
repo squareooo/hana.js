@@ -24,13 +24,23 @@ Using CDN
 
 ## 시작하기
 
+### Hana.init
+
 JavaScript SDK 초기화 예제입니다.
 
 ```js
 const Hana = require("hana.js")
 
-Hana.init()
+Hana.init({
+  clientId: "31024ffa-5ef0-413e-9bf5-f1761638b6d8",
+})
 ```
+
+#### 입력인자
+
+| Name       |  Type  | Required | Description     |
+| ---------- | :----: | :------: | --------------- |
+| `clientId` | string |    Y     | 애플리케이션 ID |
 
 ## 기능 명세
 
