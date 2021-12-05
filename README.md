@@ -24,7 +24,7 @@ Using CDN
 
 ## 시작하기
 
-### Hana.init
+### Hana.init()
 
 JavaScript SDK 초기화 예제입니다.
 
@@ -44,7 +44,7 @@ Hana.init({
 
 ## 기능 명세
 
-### Hana.Auth.authorize
+### Hana.Auth.authorize()
 
 사용자가 앱에 로그인할 수 있도록 인가 코드를 요청하는 함수입니다. 인가 코드를 받을 수 있는 서버 개발이 필요합니다.
 
@@ -61,7 +61,21 @@ Hana.Auth.authorize({
 | `redirectUri` | string |    N     | 인가 코드를 받을 URI |
 | `scope`       | string |    N     | 추가 동의 받을 항목  |
 
-### Hana.Auth.token
+### Hana.Auth.getClientId()
+
+사용 중인 Client ID
+
+```js
+Hana.Auth.getClientId()
+```
+
+#### 출력결과
+
+```js
+31024ffa-5ef0-413e-9bf5-f1761638b6d8
+```
+
+### Hana.Auth.token()
 
 사용자가 앱에 로그인할 수 있도록 인가 코드를 요청하는 함수입니다. 인가 코드를 받을 수 있는 서버 개발이 필요합니다.
 
