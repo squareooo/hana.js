@@ -1,4 +1,5 @@
 import axios from "axios"
+import jose from "jose"
 
 import store from "../store"
 
@@ -39,6 +40,22 @@ const token = async (input: TokenInput) => {
   return res.data
 }
 
+type TokenInfoInput = {
+  accessToken: string
+}
+
+const tokenInfo = async (input: TokenInfoInput) => {
+  const JWKS = jose.createRemoteJWKSet(
+    new URL("https://xauth.hana.ooo/.well-known/jwks")
+  )
+
+  const { payload } = await jose.jwtVerify(input.accessToken, JWKS, {
+    issuer: "auth.hana.ooo",
+  })
+
+  return payload
+}
+
 const getAccessToken = () => {
   return store.state.accessToken
 }
@@ -51,4 +68,4 @@ const setAccessToken = (accessToken: string) => {
   store.state.accessToken = accessToken
 }
 
-export default { authorize, token, getAccessToken, getClientId, setAccessToken }
+export default { authorize, token, tokenInfo, getAccessToken, getClientId, setAccessToken }
