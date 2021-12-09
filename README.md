@@ -81,6 +81,7 @@ Hana.Auth.getClientId()
 
 ```js
 Hana.Auth.token({
+  grantType: "authorization_code",
   redirectUri: "https://hana.ooo/authorize",
   code: "128ba3b3-f2ca-4a33-afaf-aae20ba79093",
 })
@@ -88,10 +89,11 @@ Hana.Auth.token({
 
 #### 입력인자
 
-| Name          |  Type  | Required | Description          |
-| ------------- | :----: | :------: | -------------------- |
-| `redirectUri` | string |    Y     | 인가 코드를 받을 URI |
-| `code`        | string |    Y     | 추가 동의 받을 항목  |
+| Name          |  Type  | Required | Description               |
+| ------------- | :----: | :------: | ------------------------- |
+| `grantType`   | string |    Y     | authorization_code로 고정 |
+| `redirectUri` | string |    Y     | 인가 코드를 받을 URI      |
+| `code`        | string |    Y     | 추가 동의 받을 항목       |
 
 #### 출력결과
 

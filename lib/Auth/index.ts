@@ -1,5 +1,5 @@
 import axios from "axios"
-import jose from "jose"
+import * as jose from "jose"
 
 import store from "../store"
 
@@ -24,6 +24,7 @@ const authorize = (input: AuthorizeInput) => {
 type TokenInput = {
   grantType: string
   redirectUri: string
+  refreshToken: string
   code: string
   clientSecret: string
 }
@@ -31,9 +32,10 @@ type TokenInput = {
 const token = async (input: TokenInput) => {
   const res = await axios.post("https://xauth.hana.ooo/oauth/token", {
     client_id: store.state.clientId,
-    grant_type: input.grantType ?? "authorization_code",
-    redirect_uri: input.redirectUri,
-    code: input.code,
+    grant_type: input.grantType,
+    redirect_uri: input.redirectUri ?? undefined,
+    refresh_token: input.refreshToken ?? undefined,
+    code: input.code ?? undefined,
     client_secret: input.clientSecret ?? undefined,
   })
 
@@ -68,4 +70,11 @@ const setAccessToken = (accessToken: string) => {
   store.state.accessToken = accessToken
 }
 
-export default { authorize, token, tokenInfo, getAccessToken, getClientId, setAccessToken }
+export default {
+  authorize,
+  token,
+  tokenInfo,
+  getAccessToken,
+  getClientId,
+  setAccessToken,
+}
