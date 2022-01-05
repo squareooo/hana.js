@@ -30,14 +30,18 @@ type TokenInput = {
 }
 
 const token = async (input: TokenInput) => {
-  const res = await axios.post("https://xauth.hana.ooo/oauth/token", {
-    client_id: store.state.clientId,
-    grant_type: input.grantType,
-    redirect_uri: input.redirectUri ?? undefined,
-    refresh_token: input.refreshToken ?? undefined,
-    code: input.code ?? undefined,
-    client_secret: input.clientSecret ?? undefined,
-  })
+  const res = await axios.post(
+    "https://xauth.hana.ooo/oauth/token",
+    {
+      client_id: store.state.clientId,
+      grant_type: input.grantType,
+      redirect_uri: input.redirectUri,
+      refresh_token: input.refreshToken ?? undefined,
+      code: input.code ?? undefined,
+      client_secret: input.clientSecret ?? undefined,
+    },
+    { withCredentials: true }
+  )
 
   return res.data
 }
