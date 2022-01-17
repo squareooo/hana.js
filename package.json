@@ -7,11 +7,15 @@
   "scripts": {
     "build": "tsc && webpack",
     "test": "yarn build && node test/index.mjs",
-    "pub": "yarn build && yarn publish"
+    "pub": "yarn build && yarn publish",
+    "prepare": "husky install"
   },
   "repository": "https://github.com/momenthana/hana.js.git",
   "author": "Hana <momenthana@kakao.com>",
   "devDependencies": {
+    "@commitlint/cli": "^16.0.2",
+    "@commitlint/config-conventional": "^16.0.0",
+    "husky": "^7.0.4",
     "terser-webpack-plugin": "^5.2.5",
     "ts-loader": "^9.2.6",
     "typescript": "^4.5.2",
