@@ -23,7 +23,7 @@ const authorize = (input: AuthorizeInput) => {
 
 type TokenInput = {
   grantType: "authorization_code" | "refresh_token";
-  redirectUri: string;
+  redirectUri?: string;
   refreshToken?: string;
   code?: string;
   clientSecret?: string;
@@ -35,7 +35,7 @@ const token = async (input: TokenInput) => {
     {
       client_id: store.state.clientId,
       grant_type: input.grantType,
-      redirect_uri: input.redirectUri,
+      redirect_uri: input.redirectUri ?? undefined,
       refresh_token: input.refreshToken ?? undefined,
       code: input.code ?? undefined,
       client_secret: input.clientSecret ?? undefined,
