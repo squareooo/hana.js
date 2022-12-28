@@ -15,7 +15,7 @@ const authorize = (input: AuthorizeInput) => {
     .map((e) => (e[1] ? e.join("=") : null))
     .filter(Boolean);
 
-  let uri = `https://auth.hana.ooo/oauth/authorize`;
+  let uri = `https://accounts.hana.ooo/oauth/authorize`;
   if (query) uri += `?${query.join("&")}`;
 
   location.href = uri;
@@ -31,7 +31,7 @@ type TokenInput = {
 
 const token = async (input: TokenInput) => {
   const res = await axios.post(
-    "https://xauth.hana.ooo/oauth/token",
+    "https://accounts.hana.ooo/api/oauth/token",
     {
       client_id: store.state.clientId,
       grant_type: input.grantType,
@@ -52,11 +52,11 @@ type TokenInfoInput = {
 
 const tokenInfo = async (input: TokenInfoInput) => {
   const JWKS = jose.createRemoteJWKSet(
-    new URL("https://xauth.hana.ooo/.well-known/jwks")
+    new URL("https://accounts.hana.ooo/api/oauth/jwks")
   );
 
   const { payload } = await jose.jwtVerify(input.accessToken, JWKS, {
-    issuer: "auth.hana.ooo",
+    issuer: "accounts.hana.ooo",
   });
 
   return payload;
