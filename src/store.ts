@@ -1,15 +1,15 @@
 interface StoreInput {
-  state: any
+  state: any;
 }
 
 class Store {
-  state
+  state;
 
   constructor({ state }: StoreInput) {
-    this.state = state
+    this.state = state;
   }
 }
 
 export default new Store({
   state: {},
-})
+});

@@ -1,7 +1,6 @@
-lib/
+src/
 node_modules/
 test/
 .DS_Store
 .git*
 tsconfig.json
-webpack.config.js
