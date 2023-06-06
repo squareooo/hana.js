@@ -33,7 +33,7 @@
     "prettier": "^2.8.7",
     "ts-loader": "^9.2.6",
     "typescript": "^5.0.4",
-    "vite": "^4.2.1",
+    "vite": "^4.2.3",
     "vite-plugin-dts": "^2.2.0"
   },
   "dependencies": {

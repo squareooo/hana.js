@@ -1470,7 +1470,7 @@ is-core-module@^2.1.0, is-core-module@^2.11.0:
   dependencies:
     has "^1.0.3"
 
-is-core-module@^2.5.0, is-core-module@^2.8.0:
+is-core-module@^2.5.0:
   version "2.8.1"
   resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.8.1.tgz#f59fdfca701d5879d0a6b100a40aa1560ce27211"
   integrity sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==
@@ -2028,16 +2028,7 @@ resolve-global@1.0.0, resolve-global@^1.0.0:
   dependencies:
     global-dirs "^0.1.1"
 
-resolve@^1.10.0:
-  version "1.21.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.21.0.tgz#b51adc97f3472e6a5cf4444d34bc9d6b9037591f"
-  integrity sha512-3wCbTpk5WJlyE4mSOtDLhqQmGFi0/TD9VPwmiolnk8U0wRgMEktqCXd3vy5buTO3tljvalNvKrjHEfrd2WpEKA==
-  dependencies:
-    is-core-module "^2.8.0"
-    path-parse "^1.0.7"
-    supports-preserve-symlinks-flag "^1.0.0"
-
-resolve@^1.22.1, resolve@~1.22.1:
+resolve@^1.10.0, resolve@^1.22.1, resolve@~1.22.1:
   version "1.22.2"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.2.tgz#0ed0943d4e301867955766c9f3e1ae6d01c6845f"
   integrity sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==
@@ -2425,10 +2416,10 @@ vite-plugin-dts@^2.2.0:
     magic-string "^0.29.0"
     ts-morph "17.0.1"
 
-vite@^4.2.1:
-  version "4.2.1"
-  resolved "https://registry.yarnpkg.com/vite/-/vite-4.2.1.tgz#6c2eb337b0dfd80a9ded5922163b94949d7fc254"
-  integrity sha512-7MKhqdy0ISo4wnvwtqZkjke6XN4taqQ2TBaTccLIpOKv7Vp2h4Y+NpmWCnGDeSvvn45KxvWgGyb0MkHvY1vgbg==
+vite@^4.2.3:
+  version "4.2.3"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-4.2.3.tgz#067ada47ebd52e078d014bf1f92badda9d10564d"
+  integrity sha512-kLU+m2q0Y434Y1kCy3TchefAdtFso0ILi0dLyFV8Us3InXTU11H/B5ZTqCKIQHzSKNxVG/yEx813EA9f1imQ9A==
   dependencies:
     esbuild "^0.17.5"
     postcss "^8.4.21"
