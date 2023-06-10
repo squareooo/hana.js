@@ -9,7 +9,4 @@ const init = (input: InitInput) => {
   store.state.clientId = input.clientId;
 };
 
-const Hana = { init, Auth };
-
-module.exports = Hana;
-export default Hana;
+export { init, Auth };

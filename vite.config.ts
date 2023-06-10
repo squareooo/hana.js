@@ -1,4 +1,5 @@
 import path from "path";
+
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -9,7 +10,7 @@ export default defineConfig({
     sourcemap: true,
     lib: {
       entry: path.resolve(__dirname, "src/index.ts"),
-      name: "Hana.js",
+      name: "hana.js",
       formats: ["es", "cjs", "umd", "iife"],
       fileName: (format) => `index.${format}.js`,
     },
