@@ -1,7 +1,6 @@
-import axios from "axios";
 import * as jose from "jose";
 
-import store from "../store";
+import { store } from "../store";
 
 type AuthorizeInput = {
   redirectUri: string;
@@ -15,7 +14,9 @@ const authorize = (input: AuthorizeInput) => {
     .map((e) => (e[1] ? e.join("=") : null))
     .filter(Boolean);
 
-  let uri = `https://accounts.hana.ooo/oauth/authorize`;
+  let uri = `https://${
+    store.state?.authHost ?? "accounts.hana.ooo"
+  }/oauth/authorize`;
   if (query) uri += `?${query.join("&")}`;
 
   location.href = uri;
@@ -30,20 +31,28 @@ type TokenInput = {
 };
 
 const token = async (input: TokenInput) => {
-  const res = await axios.post(
-    "https://accounts.hana.ooo/api/oauth/token",
+  const res = await fetch(
+    `https://${store.state?.authHost ?? "accounts.hana.ooo"}/api/oauth/token`,
     {
-      client_id: store.state.clientId,
-      grant_type: input.grantType,
-      redirect_uri: input.redirectUri ?? undefined,
-      refresh_token: input.refreshToken ?? undefined,
-      code: input.code ?? undefined,
-      client_secret: input.clientSecret ?? undefined,
-    },
-    { withCredentials: true }
+      method: "POST",
+      credentials: "include",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        client_id: store.state.clientId,
+        grant_type: input.grantType,
+        redirect_uri: input.redirectUri ?? undefined,
+        refresh_token: input.refreshToken ?? undefined,
+        code: input.code ?? undefined,
+        client_secret: input.clientSecret ?? undefined,
+      }),
+    }
   );
 
-  return res.data;
+  const jsonData = await res.json();
+  return jsonData;
 };
 
 type TokenInfoInput = {
@@ -52,11 +61,13 @@ type TokenInfoInput = {
 
 const tokenInfo = async (input: TokenInfoInput) => {
   const JWKS = jose.createRemoteJWKSet(
-    new URL("https://accounts.hana.ooo/api/oauth/jwks")
+    new URL(
+      `https://${store.state?.authHost ?? "accounts.hana.ooo"}/api/oauth/jwks`
+    )
   );
 
   const { payload } = await jose.jwtVerify(input.accessToken, JWKS, {
-    issuer: "accounts.hana.ooo",
+    issuer: store.state?.authHost ?? "accounts.hana.ooo",
   });
 
   return payload;
@@ -74,7 +85,7 @@ const setAccessToken = (accessToken: string) => {
   store.state.accessToken = accessToken;
 };
 
-export default {
+export {
   authorize,
   token,
   tokenInfo,
