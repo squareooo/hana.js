@@ -7,8 +7,7 @@ type InitInput = {
 };
 
 const init = (input: InitInput) => {
-  store.state.clientId = input.clientId;
-  store.state.authHost = input.authHost;
+  store.setState({ clientId: input.clientId, authHost: input.authHost });
 };
 
 const Hana = { init, Auth };

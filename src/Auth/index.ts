@@ -7,16 +7,16 @@ type AuthorizeInput = {
 };
 
 const authorize = (input: AuthorizeInput) => {
+  const { clientId, authHost } = store.getState();
+
   const query = Object.entries({
-    client_id: store.state?.clientId,
+    client_id: clientId,
     redirect_uri: input?.redirectUri,
   })
     .map((e) => (e[1] ? e.join("=") : null))
     .filter(Boolean);
 
-  let uri = `https://${
-    store.state?.authHost ?? "accounts.hana.ooo"
-  }/oauth/authorize`;
+  let uri = `https://${authHost ?? "accounts.hana.ooo"}/oauth/authorize`;
   if (query) uri += `?${query.join("&")}`;
 
   location.href = uri;
@@ -31,8 +31,10 @@ type TokenInput = {
 };
 
 const token = async (input: TokenInput) => {
+  const { clientId, authHost } = store.getState();
+
   const res = await fetch(
-    `https://${store.state?.authHost ?? "accounts.hana.ooo"}/api/oauth/token`,
+    `https://${authHost ?? "accounts.hana.ooo"}/api/oauth/token`,
     {
       method: "POST",
       credentials: "include",
@@ -41,7 +43,7 @@ const token = async (input: TokenInput) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        client_id: store.state.clientId,
+        client_id: clientId,
         grant_type: input.grantType,
         redirect_uri: input.redirectUri ?? undefined,
         refresh_token: input.refreshToken ?? undefined,
@@ -60,29 +62,33 @@ type TokenInfoInput = {
 };
 
 const tokenInfo = async (input: TokenInfoInput) => {
+  const { clientId, authHost } = store.getState();
+
   const JWKS = jose.createRemoteJWKSet(
-    new URL(
-      `https://${store.state?.authHost ?? "accounts.hana.ooo"}/api/oauth/jwks`
-    )
+    new URL(`https://${authHost ?? "accounts.hana.ooo"}/api/oauth/jwks`)
   );
 
   const { payload } = await jose.jwtVerify(input.accessToken, JWKS, {
-    issuer: store.state?.authHost ?? "accounts.hana.ooo",
+    issuer: "accounts.hana.ooo",
   });
 
   return payload;
 };
 
 const getAccessToken = () => {
-  return store.state.accessToken;
+  const { accessToken } = store.getState();
+
+  return accessToken;
 };
 
 const getClientId = () => {
-  return store.state.clientId;
+  const { clientId } = store.getState();
+
+  return clientId;
 };
 
 const setAccessToken = (accessToken: string) => {
-  store.state.accessToken = accessToken;
+  store.setState({ accessToken });
 };
 
 export {

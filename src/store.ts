@@ -1,15 +1,12 @@
-interface StoreInput {
-  state: any;
+import { create } from "zustand";
+
+interface Store {
+  clientId?: string;
+  authHost?: string;
+  accessToken?: string;
 }
 
-class Store {
-  state;
-
-  constructor({ state }: StoreInput) {
-    this.state = state;
-  }
-}
-
-export const store = new Store({
-  state: {},
-});
+export const store = create<Store>()((set) => ({
+  clientId: "",
+  authHost: "",
+}));
